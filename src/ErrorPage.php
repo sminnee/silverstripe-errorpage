@@ -61,7 +61,7 @@ class ErrorPage extends Page
      *
      * @var boolean
      */
-    private static $suppress_dev_message = false;
+    private static $dev_append_error_message = true;
 
     /**
      * Allows control over writing directly to the configured `GeneratedAssetStore`.
@@ -112,8 +112,8 @@ class ErrorPage extends Page
             Requirements::clear();
             Requirements::clear_combined_files();
 
-            //use @var suppress_dev_message to opt out of dev message
-            $showDevMessage = ($this->config()->suppress_dev_message !== false);
+            //set @var dev_append_error_message to false to opt out of dev message
+            $showDevMessage = ($this->config()->dev_append_error_message === true);
 
             if ($errorMessage) {
                 // Dev environments will have the error message added regardless of template changes
